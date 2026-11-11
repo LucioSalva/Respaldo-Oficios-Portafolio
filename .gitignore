@@ -1,0 +1,43 @@
+# Variables de entorno (solo se versiona .env.example)
+.env
+.env.*
+!.env.example
+
+# Uploads y logs
+uploads/*
+!uploads/.gitkeep
+storage/logs/*
+!storage/logs/.gitkeep
+*.log
+
+# Datos: nunca versionar bases, respaldos ni exportaciones
+*.xlsx
+*.xls
+*.csv
+*.zip
+*.dump
+backups/
+paquete_produccion/
+/*.sql
+
+# Dependencias
+/vendor/
+/node_modules/
+
+# Docker volumes
+pgdata/
+
+# Temporales / editores
+*.tmp
+*.swp
+*.bak
+~$*
+.vscode/
+.idea/
+.claude/
+.agents/
+
+# Python
+__pycache__/
+*.pyc
+.venv/

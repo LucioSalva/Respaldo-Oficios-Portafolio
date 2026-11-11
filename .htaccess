@@ -1,0 +1,22 @@
+# =============================================================================
+# .htaccess RAIZ - Solo proteccion en caso de exposicion accidental.
+#
+# El despliegue oficial usa el VirtualHost / Alias con DocumentRoot apuntando
+# a public/. Este archivo NO deberia servir trafico real. Si Apache llegase a
+# apuntar aqui por error, este .htaccess bloquea archivos sensibles.
+# =============================================================================
+
+Options -Indexes
+
+# Bloquear extensiones sensibles
+<FilesMatch "\.(env|sql|log|sh|md|yml|yaml|json|ini|bak|swp|git|rar|zip)$">
+    Require all denied
+</FilesMatch>
+
+# Bloquear acceso directo a carpetas internas del proyecto
+RedirectMatch 403 ^/(app|sql|storage|backups|tests|tools|deploy|docker|vendor)(/.*)?$
+
+# Bloquear cualquier .php en la raiz (front controller solo via public/)
+<FilesMatch "\.php$">
+    Require all denied
+</FilesMatch>
